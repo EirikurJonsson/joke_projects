@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels',
     'jokes',
 ]
 
@@ -71,6 +72,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'jokes_project.wsgi.application'
+ASGI_APPLICATION = 'jokes_project.asgi.application'
+
+
 
 CELERY_BROKER_URL = 'redis://localhost:6379'
 
@@ -85,6 +89,14 @@ DATABASES = {
     }
 }
 
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('127.0.0.1', 6379)]
+        }
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

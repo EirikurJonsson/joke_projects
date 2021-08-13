@@ -20,6 +20,15 @@
         </div>
     
     </div>
+    <script>
+        var socket = new WebSocket('ws://localhost:8000/ws/jokes/');
+
+        socket.onmessage = function(even){
+            var joke = event.data;
+
+            document.querySelector('#jokes').innerText = joke;
+        }
+    </script>
 
 </body>
 </html> 
